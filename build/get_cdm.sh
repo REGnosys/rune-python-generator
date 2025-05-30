@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# utility script - pulls the version of CDM specified by CDM_VERSION 
+# supports build_cdm.sh
+#
+
 function error
 {
     echo
@@ -19,8 +24,8 @@ rm -rf common-domain-model
 mkdir common-domain-model
 cd common-domain-model
 echo "***** pull CDM rosetta definitions"
-CDM_VERSION="5.22.1"
-# CDM_VERSION="master"
+# CDM_VERSION="5.22.1"
+CDM_VERSION="master"
 git init
 git config core.sparseCheckout true
 echo "rosetta-source/src/main/rosetta" >> .git/info/sparse-checkout

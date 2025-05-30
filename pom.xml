@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>com.regnosys.rosetta.code-generators</groupId>
-    <artifactId>python-generator</artifactId>
+    <artifactId>rune-python-generator</artifactId>
     <version>0.0.0.main-SNAPSHOT</version>
-    <packaging>jar</packaging> <!-- Changed from pom to jar -->
+    <packaging>jar</packaging>
     <name>code-gen-python</name>
 
     <description>Generator to create Python from Rune</description>
@@ -42,12 +42,11 @@
 
     <developers>
         <developer>
-            <id>minesh-s-patel</id>
-            <name>Minesh Patel</name>
-            <email>infra@regnosys.com</email>
-            <url>http://github.com/minesh-s-patel</url>
-            <organization>REGnosys</organization>
-            <organizationUrl>https://regnosys.com</organizationUrl>
+            <id>plamen-neykov</id>
+            <name>Plamen Neykov</name>
+            <email>info@cdmflow.io</email>
+            <url>http://github.com/plamen-neykov</url>
+            <organization>CDMFLow</organization>
             <timezone>+1</timezone>
             <roles>
                 <role>Maintainer</role>
@@ -55,13 +54,12 @@
             </roles>
         </developer>
         <developer>
-            <id>hugohills-regnosys</id>
-            <name>Hugo Hills</name>
-            <email>infra@regnosys.com</email>
-            <url>http://github.com/hugohills-regnosys</url>
-            <organization>REGnosys</organization>
-            <organizationUrl>https://regnosys.com</organizationUrl>
-            <timezone>+1</timezone>
+            <id>dschwartznyc</id>
+            <name>Daniel Schwartz</name>
+            <email>info@cdmflow.io</email>
+            <url>http://github.com/dschwartznyc</url>
+            <organization>CDMFlow</organization>
+            <timezone>+5</timezone>
             <roles>
                 <role>Maintainer</role>
                 <role>Developer</role>
@@ -89,6 +87,14 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jar-plugin</artifactId>
                         <version>${maven-jar-plugin.version}</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                </manifest>
+                            </archive>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -143,8 +149,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.enforced.version>[17,18)</java.enforced.version>
-        <maven.compiler.release>11</maven.compiler.release>
+        <java.enforced.version>[21,22)</java.enforced.version>
+        <maven.compiler.release>21</maven.compiler.release>
 
         <apache.commons.lang.version>3.13.0</apache.commons.lang.version>
         <apache.commons.text.version>1.11.0</apache.commons.text.version>
@@ -154,12 +160,13 @@
         <!-- Release -->
         <gpg.keyname>configured-by-release-profile</gpg.keyname>
         <repoServerHost>s01.oss.sonatype.org</repoServerHost>
-        <stagingTimeoutInMinutes>10</stagingTimeoutInMinutes>
+        <stagingTimeoutInMinutes>20</stagingTimeoutInMinutes>
 
-        <rosetta.dsl.version>9.49.1</rosetta.dsl.version>
-        <rosetta.bundle.version>11.59.1</rosetta.bundle.version>
+        <rosetta.dsl.version>9.54.0</rosetta.dsl.version>   
+        <rosetta.bundle.version>11.64.0</rosetta.bundle.version>
 
-        <xtext.version>2.27.0</xtext.version>
+        <xtext.version>2.38.0</xtext.version>
+        <guice.version>6.0.0</guice.version>
 
         <slf4j.version>2.0.13</slf4j.version>
         <logback.version>1.5.6</logback.version>
@@ -169,7 +176,8 @@
         <hamcrest.version>2.2</hamcrest.version>
 
         <!-- plugin -->
-        <maven-enforcer-plugin.version>3.2.1</maven-enforcer-plugin.version>
+        <maven-enforcer-plugin.version>3.3.0</maven-enforcer-plugin.version>
+        <maven-checkstyle-plugin.version>3.4.0</maven-checkstyle-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -205,6 +213,11 @@
                 <version>${apache.commons.text.version}</version>
             </dependency>
             <!-- xtext START -->
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.eclipse.xtext</groupId>
                 <artifactId>xtext-dev-bom</artifactId>
@@ -355,7 +368,7 @@
         <dependency>
             <groupId>com.regnosys.rosetta.code-generators</groupId>
             <artifactId>test-helper</artifactId>
-            <version>${project.version}</version>
+            <version>${rosetta.bundle.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -372,10 +385,6 @@
         <dependency>
             <groupId>org.eclipse.emf</groupId>
             <artifactId>org.eclipse.emf.codegen.ecore</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>

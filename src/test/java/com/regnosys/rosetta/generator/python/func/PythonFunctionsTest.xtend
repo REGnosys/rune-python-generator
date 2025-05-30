@@ -1,6 +1,6 @@
 package com.regnosys.rosetta.generator.python.func
 
-import com.google.inject.Inject
+import jakarta.inject.Inject
 import com.regnosys.rosetta.tests.RosettaInjectorProvider
 import com.regnosys.rosetta.tests.util.ModelHelper
 
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import com.regnosys.rosetta.generator.python.PythonCodeGenerator
 import static org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Disabled
 import com.regnosys.rosetta.generator.python.PythonGeneratorTestUtils
 
 /*

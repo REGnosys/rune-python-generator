@@ -1,7 +1,6 @@
 package com.regnosys.rosetta.generator.python.object
 
-// TODO: fix unit tests
-import com.google.inject.Inject
+import jakarta.inject.Inject
 import com.regnosys.rosetta.generator.python.expressions.PythonExpressionGenerator
 import com.regnosys.rosetta.generator.python.util.PythonCodeGeneratorUtil
 import com.regnosys.rosetta.rosetta.RosettaModel
@@ -108,7 +107,7 @@ class PythonModelObjectGenerator {
                     _stubContents.append("._bundle import ")
                     _stubContents.append(name.replace('.', '_'))
                     _stubContents.append(" as ")
-                    _stubContents.append(parsedName.last())
+                    _stubContents.append(parsedName.lastOrNull())
                     _stubContents.newLine()
                     _stubContents.newLine()
                     _stubContents.append("# EOF")
